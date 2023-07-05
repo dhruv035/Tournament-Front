@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     setHasMounted(true);
   }, []);
   const { data, isError, isLoading } = useContractRead({
-    address: "process.env.CONTRACT",
+    address: process.env.CONTRACT,
     abi: abi,
     functionName: "getTournaments",
     args: [address],

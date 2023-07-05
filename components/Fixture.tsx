@@ -24,7 +24,6 @@ type Team = {
 }
 
 const Fixture: FunctionComponent<Props> = ({match,tname,write}:Props) => {
-	console.log('match,tname :>> ', match,tname);
 	const [win,setWin]=useState(0)
 	const {id,teama,teamb,winner} = match;
 	const [teams,setTeams] = useState<any>([])
@@ -37,18 +36,16 @@ const Fixture: FunctionComponent<Props> = ({match,tname,write}:Props) => {
 		setWin(0)
 		setOpen(false);}
 	const {data:dataRead,isLoading:readLoading}= useContractRead({
-		address: 'process.env.CONTRACT',
+		address: process.env.CONTRACT,
 		abi:myContract.abi,
 		functionName: 'getTournamentParticipants',
 		args:[tname],
 		onSuccess(data){
-			console.log('data Fixture:>> ', data);
 			setTeams(data);
 		}
 	})
 	
 	
-  console.log('teams :>> ', teams);
   return (
 	<div>
 		

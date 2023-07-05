@@ -17,7 +17,6 @@ const Home: NextPage = () => {
 	const [rounds, setRounds]= useState(0);
 	const abi = myContract.abi;
   const router = useRouter();
-  console.log("router.query.name :>> ", router.query.name);
   const { address } = useAccount();
   const [matchups, setMatchups] = useState([]);
 
@@ -26,22 +25,20 @@ const Home: NextPage = () => {
   }, []);
 
 	const { data:datawin, isSuccess, write } = useContractWrite({
-    address: 'process.env.CONTRACT',
+    address: process.env.CONTRACT,
     abi: myContract.abi,
     functionName: 'matchResult',
 		onSuccess(data){
-			console.log("SUUCCESS");
 			refetch();
 		}
   })
 
   const { data, isError, isLoading,refetch } = useContractRead({
-    address: "process.env.CONTRACT",
+    address: process.env.CONTRACT,
     abi: abi,
     functionName: "getTournamentMatchups",
     args: [router.query.name],
     onSuccess(data) {
-      console.log("datacc :>> ", data);
 			let temp =data;
 			for(let i = 0;i<data.length;i++)
 			{
@@ -51,7 +48,6 @@ const Home: NextPage = () => {
 					temp[i].winner=Number(data[i].winner);
 				
 			}
-			console.log('dataafter :>> ', temp);
       setMatchups(temp);
 			let i=1;
 			let j=(data.length+1)/2;
@@ -60,7 +56,6 @@ const Home: NextPage = () => {
 				i++;
 				j=j/2;
 			}
-			console.log('Rounds :>> ', i);
 			setRounds(i);
 			setSize((data.length+1)/2)
     },
@@ -78,7 +73,6 @@ const Home: NextPage = () => {
 							<div className="flex flex-col-reverse justify-center mx-5">
 								{
 									rmatchups.slice((2**ri)-1,2**(ri+1)-1).map((matchup,mi)=>{
-										console.log('matchup,mi,ri :>> ', matchup,mi,ri);
 										return(
 											<div className="my-10">
 												<Fixture match={matchup} tname={String(router.query.name)} write={write}/>

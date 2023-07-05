@@ -9,7 +9,7 @@ import myContract from "../abi/BracketGenerator.json"
 const Home: NextPage = () => {
   const [tCount, setTCount] = useState(2);
 	const { data, isLoading, isSuccess, write } = useContractWrite({
-    address: 'process.env.CONTRACT',
+    address: process.env.CONTRACT,
     abi: myContract.abi,
     functionName: 'createTournament',
   })
