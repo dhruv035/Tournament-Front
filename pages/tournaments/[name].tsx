@@ -26,7 +26,7 @@ const Home: NextPage = () => {
   }, []);
 
 	const { data:datawin, isSuccess, write } = useContractWrite({
-    address: '0xe6feC6dbdA6ebF8c04c710890483FB2C9A6dEf91',
+    address: 'process.env.CONTRACT',
     abi: myContract.abi,
     functionName: 'matchResult',
 		onSuccess(data){
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
   })
 
   const { data, isError, isLoading,refetch } = useContractRead({
-    address: "0xe6feC6dbdA6ebF8c04c710890483FB2C9A6dEf91",
+    address: "process.env.CONTRACT",
     abi: abi,
     functionName: "getTournamentMatchups",
     args: [router.query.name],
