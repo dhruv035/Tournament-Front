@@ -36,7 +36,7 @@ const Fixture: FunctionComponent<Props> = ({match,tname,write}:Props) => {
 		setWin(0)
 		setOpen(false);}
 	const {data:dataRead,isLoading:readLoading}= useContractRead({
-		address: process.env.CONTRACT,
+		address: "0xe6feC6dbdA6ebF8c04c710890483FB2C9A6dEf91",
 		abi:myContract.abi,
 		functionName: 'getTournamentParticipants',
 		args:[tname],
