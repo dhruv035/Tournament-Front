@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     setHasMounted(true);
   }, []);
   const { data, isError, isLoading } = useContractRead({
-    address:"0xe6feC6dbdA6ebF8c04c710890483FB2C9A6dEf91",
+    address:"0x949ba47df69C6C1331F4B9659b1D9913C0451Cfc",
     abi: abi,
     functionName: "getTournaments",
     args: [address],

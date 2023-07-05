@@ -25,7 +25,7 @@ const Home: NextPage = () => {
   }, []);
 
 	const { data:datawin, isSuccess, write } = useContractWrite({
-    address: "0xe6feC6dbdA6ebF8c04c710890483FB2C9A6dEf91",
+    address: "0x949ba47df69C6C1331F4B9659b1D9913C0451Cfc",
     abi: myContract.abi,
     functionName: 'matchResult',
 		onSuccess(data){
@@ -34,15 +34,15 @@ const Home: NextPage = () => {
   })
 
   const { data, isError, isLoading,refetch } = useContractRead({
-    address: "0xe6feC6dbdA6ebF8c04c710890483FB2C9A6dEf91",
+    address: "0x949ba47df69C6C1331F4B9659b1D9913C0451Cfc",
     abi: abi,
     functionName: "getTournamentMatchups",
-    args: [router.query.name],
+    args: [router.query.name,address],
     onSuccess(data:any) {
 			let temp =data;
 			for(let i = 0;i<data.length;i++)
 			{
-					temp[i].id= Number(data[i].id);
+					temp[i].id=i;
 					temp[i].teama=Number(data[i].teama);
 					temp[i].teamb= Number(data[i].teamb);
 					temp[i].winner=Number(data[i].winner);
